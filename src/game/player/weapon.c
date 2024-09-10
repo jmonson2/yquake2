@@ -803,11 +803,6 @@ weapon_grenade_fire(edict_t *ent, qboolean held)
 		((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER);
 	fire_grenade2(ent, start, forward, damage, speed, timer, radius, held);
 
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index]--;
-	}
-
 	ent->client->grenade_time = level.time + 1.0;
 
 	if (ent->deadflag || (ent->s.modelindex != 255)) /* VWep animations screw up corpses */
@@ -1011,11 +1006,6 @@ weapon_grenadelauncher_fire(edict_t *ent)
 	ent->client->ps.gunframe++;
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index]--;
-	}
 }
 
 void
@@ -1074,11 +1064,6 @@ Weapon_RocketLauncher_Fire(edict_t *ent)
 	ent->client->ps.gunframe++;
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index]--;
-	}
 }
 
 void
@@ -1239,11 +1224,6 @@ Weapon_HyperBlaster_Fire(edict_t *ent)
 
 			Blaster_Fire(ent, offset, damage, true, effect);
 
-			if (!((int)dmflags->value & DF_INFINITE_AMMO))
-			{
-				ent->client->pers.inventory[ent->client->ammo_index]--;
-			}
-
 			ent->client->anim_priority = ANIM_ATTACK;
 
 			if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
@@ -1381,11 +1361,6 @@ Machinegun_Fire(edict_t *ent)
 	gi.multicast(ent->s.origin, MULTICAST_PVS);
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index]--;
-	}
 
 	ent->client->anim_priority = ANIM_ATTACK;
 
@@ -1562,11 +1537,6 @@ Chaingun_Fire(edict_t *ent)
 	gi.multicast(ent->s.origin, MULTICAST_PVS);
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index] -= shots;
-	}
 }
 
 void
@@ -1642,11 +1612,6 @@ weapon_shotgun_fire(edict_t *ent)
 
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index]--;
-	}
 }
 
 void
@@ -1738,12 +1703,7 @@ weapon_supershotgun_fire(edict_t *ent)
 	gi.multicast(ent->s.origin, MULTICAST_PVS);
 
 	ent->client->ps.gunframe++;
-	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index] -= 2;
-	}
+  PlayerNoise(ent, start, PNOISE_WEAPON);
 }
 
 void
@@ -1814,11 +1774,6 @@ weapon_railgun_fire(edict_t *ent)
 
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index]--;
-	}
 }
 
 void
@@ -1905,11 +1860,6 @@ weapon_bfg_fire(edict_t *ent)
 	ent->client->ps.gunframe++;
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-
-	if (!((int)dmflags->value & DF_INFINITE_AMMO))
-	{
-		ent->client->pers.inventory[ent->client->ammo_index] -= 50;
-	}
 }
 
 void
